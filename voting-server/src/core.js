@@ -1,5 +1,7 @@
 import { List, Map } from 'immutable';
 
+export const INITIAL_STATE = Map();
+
 export const setEntries = (state, entries) => {
   return state.set('entries', List(entries));
 };
@@ -44,10 +46,10 @@ export const next = state => {
   }
 };
 
-export const vote = (state, entry) => {
-  return state.updateIn(
+export const vote = (voteState, entry) => {
+  return voteState.updateIn(
     // keyPath:
-    ['vote', 'tally', entry],
+    ['tally', entry],
     // default value if the key doesn't yet exist:
     0,
     tally => tally + 1
